@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#fix the nginx listening to port 80
+#head to sitesenabled folder for nginx
+cd /etc/nginx/sites-enabled/ || exit;
+rm default;
+ln -s /etc/nginx/sites-available/default default;
+service nginx restart
