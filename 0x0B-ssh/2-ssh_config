@@ -1,6 +1,0 @@
-2-ssh_config#!/usr/bin/env pash
-#Configure SSH configuration file
-Host 34.224.5.224
-IdentityFile ~/.ssh/school
-PasswordAuthentication no
-
