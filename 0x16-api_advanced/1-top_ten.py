@@ -9,7 +9,7 @@ def top_ten(subreddit):
     
     # Set the headers with a custom User-Agent
     headers = {
-        'User-Agent': 'python:subreddit.hot.posts:v1.0 (by /u/yourusername)'
+        'User-Agent': 'python:subreddit.hot.posts:v1.0 (by /u/yourusername)'  # Customize this with your Reddit username
     }
     
     try:
@@ -22,15 +22,22 @@ def top_ten(subreddit):
             data = response.json()
             posts = data.get('data', {}).get('children', [])
             
-            # Print the title of each post
-            for post in posts:
-                print(post.get('data', {}).get('title'))
+            # Check if posts are available
+            if posts:
+                for post in posts:
+                    print(post.get('data', {}).get('title'))
+            else:
+                print("No hot posts found.")
+        
+        elif response.status_code == 404:
+            # Subreddit not found
+            print(None)
         
         else:
-            # Print None if the subreddit is invalid
+            # Print None for any other unsuccessful status
             print(None)
     
-    except requests.RequestException:
+    except requests.RequestException as e:
         # Print None if there is a request exception
         print(None)
 
